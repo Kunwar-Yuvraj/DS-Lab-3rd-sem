@@ -4,9 +4,9 @@ second). Develop a menu driven program to perform the following by writing
 separate function for each operation.
 
 a) read (T): To read time 
-b) Display (T):To display time 
+b) display (T):To display time 
 c) update(T): To update time 
-d) Add (T1, T2) : Add two times.
+d) add (T1, T2) : Add two times.
 
 update function increments the time by one second and returns the new time
 (if the increment results in 60 seconds, then the second member is set to zero
@@ -57,13 +57,13 @@ void read(TIME *T)
 }
 
 
-void Display(TIME *T)
+void display(TIME *T)
 {
     printf("\nTime is: %02d:%02d:%02d\n", T->hour, T->minute, T->second);
 }
 
 
-void Normalize(TIME *T)
+void normalize(TIME *T)
 {
     if (T->second > 59)
     {
@@ -85,7 +85,7 @@ void Normalize(TIME *T)
 void update(TIME *T)
 {
     T->second += 1;
-    Normalize(T);
+    normalize(T);
     printf("Time updated!\n");
 }
 
@@ -96,8 +96,8 @@ void add(TIME *T1, TIME *T2)
     res->hour = T1->hour + T2->hour;
     res->minute = T1->minute + T2->minute;
     res->second = T1->second + T2->second;
-    Normalize(res);
-    Display(res);
+    normalize(res);
+    display(res);
     free(res);
 }
 
@@ -114,7 +114,7 @@ int main()
     printf("3. Update\n");
     printf("4. Add\n");
     printf("0. Exit\n");
-    
+
     int choice;
     do
     {
@@ -130,7 +130,7 @@ int main()
             }
             case 2:
             {
-                Display(T);
+                display(T);
                 break;
             }
             case 3:
