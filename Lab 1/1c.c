@@ -7,8 +7,8 @@ before and after reverse.
 */
 
 
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 
 #define MAX_SIZE 10
@@ -64,7 +64,7 @@ int main()
     Display(P, size);
 
     Reverse(P, size);
-    
+
     printf("\nAfter reverse:\n");
     Display(P, size);
 

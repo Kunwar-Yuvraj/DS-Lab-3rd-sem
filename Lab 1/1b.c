@@ -11,36 +11,9 @@ pointer and also display the contents in reverse order using pointer.
 int i;
 
 
-void read(int * ptr, int n)
-{
-    printf("Enter elements:\n");
-    for (i = 0; i < n; i++)
-    {
-        scanf("%d", (ptr + i));
-    }
-}
-
-
-void display(int * ptr, int n)
-{
-    printf("Array:\n");
-    for (i=0; i<n; i++)
-    {
-        printf("%d\t", *(ptr + i));
-    }
-    printf("\n");
-}
-
-
-void display_reverse(int* ptr, int n)
-{
-    printf("Array in reverse:\n");
-    for (i = n - 1; i >= 0; i--)
-    {
-        printf("%d\t", *(ptr + i));
-    }
-    printf("\n");
-}
+void read(int *, int);
+void display(int *, int);
+void display_reverse(int *, int);
 
 
 int main()
@@ -57,4 +30,36 @@ int main()
     display_reverse(arr, n);
 
     return 0;
+}
+
+
+void read(int *ptr, int n)
+{
+    printf("Enter elements:\n");
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", (ptr + i));
+    }
+}
+
+
+void display(int *ptr, int n)
+{
+    printf("Array:\n");
+    for (i=0; i<n; i++)
+    {
+        printf("%d\t", *(ptr + i));
+    }
+    printf("\n");
+}
+
+
+void display_reverse(int *ptr, int n)
+{
+    printf("Array in reverse:\n");
+    for (i = n - 1; i >= 0; i--)
+    {
+        printf("%d\t", *(ptr + i));
+    }
+    printf("\n");
 }
