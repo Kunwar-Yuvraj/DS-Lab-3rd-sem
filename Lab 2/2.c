@@ -24,7 +24,8 @@ array of structure.
 int i, j;
 
 
-typedef struct Student
+typedef
+struct Student
 {
     char Name[25];
     int Reg_no;
