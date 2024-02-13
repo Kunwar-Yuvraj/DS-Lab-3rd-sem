@@ -9,7 +9,7 @@ Develop a menu driven program to implement Stack with dynamic memory allocation 
 typedef struct Node
 {
     int data;
-    struct Node* link;
+    struct Node *link;
 } 
 NODE;
 
@@ -19,7 +19,7 @@ typedef struct
     int size;
     int max_size;
     NODE *top;
-} 
+}
 STACK;
 
 

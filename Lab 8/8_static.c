@@ -4,10 +4,9 @@ Develop a menu driven program to implement Stack with static memory allocation (
 
 
 #include <stdio.h>
-#include <stdlib.h>
 
 
-#define MAX_SIZE 3
+#define MAX_SIZE 10
 
 
 void display(int [], int);
@@ -19,7 +18,7 @@ int peek_stack(int [], int);
 int main()
 {
     int stack[MAX_SIZE];
-    int size = 0;
+    int top = -1;
 
     printf("\nMAIN MENU :> \n\n");
     printf("1. Display\n");
@@ -38,19 +37,20 @@ int main()
         {
             case 1:
             {
-                display(stack, size);
+                display(stack, top);
+                break;
             }
             case 2:
             {
                 int data;
                 printf("Enter data : ");
                 scanf("%d", &data);
-                push_stack(stack, &size, data);
+                push_stack(stack, &top, data);
                 break;
             }
             case 3:
             {
-                int pop = pop_stack(stack, &size);
+                int pop = pop_stack(stack, &top);
                 if (pop == -1)
                 {
                     printf("Stack underflow, can't pop!\n");
@@ -63,7 +63,7 @@ int main()
             }
             case 4:
             {
-                int peek = peek_stack(stack, size);
+                int peek = peek_stack(stack, top);
                 if (peek != -1)
                 {
                     printf("Top of the stack : %d\n", peek);
@@ -74,6 +74,15 @@ int main()
                 }
                 break;
             }
+            case 0:
+            {
+                printf("Exiting...\n");
+                break;
+            }
+            default:
+            {
+                printf("Invalid choice!\n");
+            }
         }
     } while (choice != 0);
     
@@ -81,15 +90,16 @@ int main()
 }
 
 
-void display(int stack[], int size)
+void display(int stack[], int top)
 {
-    if (size == 0)
+    if (top == -1)
     {
         printf("Stack is empty!\n");
         return;
     }
     int i;
-    for (i = 0; i < size; i++)
+    printf("Stack :\n");
+    for (i = 0; i <= top; i++)
     {
         printf("%d\t", stack[i]);
     }
@@ -97,36 +107,34 @@ void display(int stack[], int size)
 }
 
 
-void push_stack(int stack[], int *size, int data)
+void push_stack(int stack[], int *top, int data)
 {
-    if (*size >= MAX_SIZE)
+    if (*top == MAX_SIZE - 1)
     {
         printf("Stack overflow, can't push!\n");
         return;
     }
-    stack[(*size)++] = data;
+    stack[++(*top)] = data;
     printf("Pushed!\n");
 }
 
 
-int pop_stack(int stack[], int *size)
+int pop_stack(int stack[], int *top)
 {
-    if (*size == 0)
+    if (*top == -1)
     {
         printf("Stack underflow, can't pop!\n");
         return -1;
     }
-    int pop = stack[--(*size)];
-    return pop;
+   return stack[(*top)--];
 }
 
 
-int peek_stack(int stack[], int size)
+int peek_stack(int stack[], int top)
 {
-    if (size == 0)
+    if (top == -1)
     {
         return -1;
     }
-   return stack[size-1];
-   return 1;
+   return stack[top];
 }
