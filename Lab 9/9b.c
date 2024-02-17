@@ -56,26 +56,19 @@ void infix_to_prefix(char infix[], char prefix[]) {
 
     int i, j;
     for (i = strlen(infix) - 1, j = 0; i >= 0; i--) {
-        if (
-            (infix[i] >= 'a' && infix[i] <= 'z') 
-            || (infix[i] >= 'A' && infix[i] <= 'Z')
-            ) {
+        if ((infix[i] >= 'a' && infix[i] <= 'z') || (infix[i] >= 'A' && infix[i] <= 'Z')) {
             prefix[j++] = infix[i];
-        } 
-        else if (infix[i] == '(') {
+        } else if (infix[i] == '(') {
             push(&op_stack, infix[i]);
-        }
-        else if (infix[i] == ')') {
+        } else if (infix[i] == ')') {
             while (peek(&op_stack) != '(') {
                 prefix[j++] = pop(&op_stack);
             }
             pop(&op_stack);
-        } 
-        else if (is_operator(infix[i])) {
-            while (
-                get_precedence(infix[i]) <= get_precedence(peek(&op_stack))
-                && infix[i] != '^'
-            ) {
+        } else if (is_operator(infix[i])) {
+            while (get_precedence(infix[i]) < get_precedence(peek(&op_stack)) ||
+                   (get_precedence(infix[i]) == get_precedence(peek(&op_stack)) &&
+                    infix[i] != '^')) {
                 prefix[j++] = pop(&op_stack);
             }
             push(&op_stack, infix[i]);
@@ -88,6 +81,7 @@ void infix_to_prefix(char infix[], char prefix[]) {
 
     prefix[j] = '\0';
 
+    // Reverse the obtained prefix expression
     int len = strlen(prefix);
     for (i = 0, j = len - 1; i < j; i++, j--) {
         char temp = prefix[i];
@@ -95,6 +89,7 @@ void infix_to_prefix(char infix[], char prefix[]) {
         prefix[j] = temp;
     }
 }
+
 
 
 
