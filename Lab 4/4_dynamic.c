@@ -37,8 +37,7 @@ int main()
     int size = 0;
     int *arr = (int *)malloc(MAX_SIZE * sizeof(int));
 
-    if (arr == NULL)
-    {
+    if (arr == NULL) {
         printf("Memory allocation failed.\n");
         return -1;
     }
